@@ -1,0 +1,222 @@
+
+mysql> create database project1;
+Query OK, 1 row affected (0.00 sec)
+
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| abc12345           |
+| datamining         |
+| karnika            |
+| mysql              |
+| nydika             |
+| performance_schema |
+| project1           |
+| student            |
+| studentdatabase    |
+| test               |
+| topper             |
++--------------------+
+12 rows in set (0.02 sec)
+
+mysql> use project1;
+Database changed
+mysql> create table proj1(name varchar(40),address varchar(40),phonenumber int(40),emailaddress varchar(40),studentid varchar(40),gradelevel varchar(40));
+Query OK, 0 rows affected (0.02 sec)
+
+mysql> desc proj1;
++--------------+-------------+------+-----+---------+-------+
+| Field        | Type        | Null | Key | Default | Extra |
++--------------+-------------+------+-----+---------+-------+
+| name         | varchar(40) | YES  |     | NULL    |       |
+| address      | varchar(40) | YES  |     | NULL    |       |
+| phonenumber  | int(40)     | YES  |     | NULL    |       |
+| emailaddress | varchar(40) | YES  |     | NULL    |       |
+| studentid    | varchar(40) | YES  |     | NULL    |       |
+| gradelevel   | varchar(40) | YES  |     | NULL    |       |
++--------------+-------------+------+-----+---------+-------+
+6 rows in set (0.01 sec)
+
+mysql> insert into proj1 value("karnika","chennai",12334567,"karnikagmailcom","21ec2124","3rdyr");
+Query OK, 1 row affected (0.02 sec)
+
+mysql> insert into proj1 value("nydika","chennai",123345788,"nydikagmailcom","21cs234","1styr");
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into proj1 value("jessey","chennai",1233457868,"jesseygmailcom","21ec1234","3rdyr");
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into proj1 value("spavithra","chennai",1232457868,"spavigmailcom","21ec1239","3rdyr");
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into proj1 value("mpavithra","chennai",1232457868,"mpavithragmailcom","21ec1234","3rdyr");
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into proj1 value("manisha","chennai",1232457468,"manishagmailcom","21ec1244","3rdyr");
+Query OK, 1 row affected (0.02 sec)
+
+mysql> insert into proj1 value("piriyadharshini","chennai",123245468,"piriyagmailcom","21ec1240","3rdyr");
+Query OK, 1 row affected (0.01 sec)
+
+mysql> select*from proj1;
++-----------------+---------+-------------+-------------------+-----------+------------+
+| name            | address | phonenumber | emailaddress      | studentid | gradelevel |
++-----------------+---------+-------------+-------------------+-----------+------------+
+| karnika         | chennai |    12334567 | karnikagmailcom   | 21ec2124  | 3rdyr      |
+| nydika          | chennai |   123345788 | nydikagmailcom    | 21cs234   | 1styr      |
+| jessey          | chennai |  1233457868 | jesseygmailcom    | 21ec1234  | 3rdyr      |
+| spavithra       | chennai |  1232457868 | spavigmailcom     | 21ec1239  | 3rdyr      |
+| mpavithra       | chennai |  1232457868 | mpavithragmailcom | 21ec1234  | 3rdyr      |
+| manisha         | chennai |  1232457468 | manishagmailcom   | 21ec1244  | 3rdyr      |
+| piriyadharshini | chennai |   123245468 | piriyagmailcom    | 21ec1240  | 3rdyr      |
++-----------------+---------+-------------+-------------------+-----------+------------+
+7 rows in set (0.00 sec)
+
+mysql> create table courses (coursename varchar(50),coursecode varchar(30),instructor varchar(40),credits varchar(50));
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> desc courses;
++------------+-------------+------+-----+---------+-------+
+| Field      | Type        | Null | Key | Default | Extra |
++------------+-------------+------+-----+---------+-------+
+| coursename | varchar(50) | YES  |     | NULL    |       |
+| coursecode | varchar(30) | YES  |     | NULL    |       |
+| instructor | varchar(40) | YES  |     | NULL    |       |
+| credits    | varchar(50) | YES  |     | NULL    |       |
++------------+-------------+------+-----+---------+-------+
+4 rows in set (0.02 sec)
+
+mysql> insert into courses("java","32java","niranjana","4credits");
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '"java","32java","niranjana","4credits")' at line 1
+mysql> insert into courses("java","32java","niranjanak","4credits");
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '"java","32java","niranjanak","4credits")' at line 1
+mysql> insert into courses value("java","32java","niranjana","4credits");
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into courses value("networks","31networks","shreya","4credits");
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into courses value("probabilityandstasticsanalysis","33probability","krishnakumar","4credits");
+Query OK, 1 row affected (0.02 sec)
+
+mysql> insert into courses value("databasemanagmentsystem","34dbms","aarav","4credits");
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into courses value("principlesofsignlsandsystem","35signals","ajay","4credits");
+Query OK, 1 row affected (0.01 sec)
+
+mysql> select*from courses;
++--------------------------------+---------------+--------------+----------+
+| coursename                     | coursecode    | instructor   | credits  |
++--------------------------------+---------------+--------------+----------+
+| java                           | 32java        | niranjana    | 4credits |
+| networks                       | 31networks    | shreya       | 4credits |
+| probabilityandstasticsanalysis | 33probability | krishnakumar | 4credits |
+| databasemanagmentsystem        | 34dbms        | aarav        | 4credits |
+| principlesofsignlsandsystem    | 35signals     | ajay         | 4credits |
++--------------------------------+---------------+--------------+----------+
+5 rows in set (0.00 sec)
+
+mysql> create table enrollment(studentname varchar(50),coursename varchar(50),idno int(45),coursecode varchar(40),semester varchar(50));
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> desc enrollment;
++-------------+-------------+------+-----+---------+-------+
+| Field       | Type        | Null | Key | Default | Extra |
++-------------+-------------+------+-----+---------+-------+
+| studentname | varchar(50) | YES  |     | NULL    |       |
+| coursename  | varchar(50) | YES  |     | NULL    |       |
+| idno        | int(45)     | YES  |     | NULL    |       |
+| coursecode  | varchar(40) | YES  |     | NULL    |       |
+| semester    | varchar(50) | YES  |     | NULL    |       |
++-------------+-------------+------+-----+---------+-------+
+5 rows in set (0.01 sec)
+
+mysql> insert into enrollment value("karnika","probabilityandstasticsanalysis", 2100,"33probability","semester6");
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into enrollment value("nydika","java", 2101,"java","semester6");
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into enrollment value("pavithra","networks", 2102,"dbms","semester6");
+Query OK, 1 row affected (0.00 sec)
+
+mysql> select*from enrollment;
++-------------+--------------------------------+------+---------------+-----------+
+| studentname | coursename                     | idno | coursecode    | semester  |
++-------------+--------------------------------+------+---------------+-----------+
+| karnika     | probabilityandstasticsanalysis | 2100 | 33probability | semester6 |
+| nydika      | java                           | 2101 | java          | semester6 |
+| pavithra    | networks                       | 2102 | dbms          | semester6 |
++-------------+--------------------------------+------+---------------+-----------+
+3 rows in set (0.00 sec)
+
+mysql> create table grades(idno varchar(50),courseid varchar(50),semester varchar(50),grade varchar(50));
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> insert into grades value("21ec321","33probability","6thsem","ograde");
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into grades value("21cs371","32java","6thsem","ograde");
+Query OK, 1 row affected (0.02 sec)
+
+mysql> insert into grades value("21ec372","34dbms","6thsem","agrade");
+Query OK, 1 row affected (0.00 sec)
+
+mysql> select*from grades;
++---------+---------------+----------+--------+
+| idno    | courseid      | semester | grade  |
++---------+---------------+----------+--------+
+| 21ec321 | 33probability | 6thsem   | ograde |
+| 21cs371 | 32java        | 6thsem   | ograde |
+| 21ec372 | 34dbms        | 6thsem   | agrade |
++---------+---------------+----------+--------+
+3 rows in set (0.00 sec)
+
+mysql> select*from proj1;
++-----------------+---------+-------------+-------------------+-----------+------------+
+| name            | address | phonenumber | emailaddress      | studentid | gradelevel |
++-----------------+---------+-------------+-------------------+-----------+------------+
+| karnika         | chennai |    12334567 | karnikagmailcom   | 21ec2124  | 3rdyr      |
+| nydika          | chennai |   123345788 | nydikagmailcom    | 21cs234   | 1styr      |
+| jessey          | chennai |  1233457868 | jesseygmailcom    | 21ec1234  | 3rdyr      |
+| spavithra       | chennai |  1232457868 | spavigmailcom     | 21ec1239  | 3rdyr      |
+| mpavithra       | chennai |  1232457868 | mpavithragmailcom | 21ec1234  | 3rdyr      |
+| manisha         | chennai |  1232457468 | manishagmailcom   | 21ec1244  | 3rdyr      |
+| piriyadharshini | chennai |   123245468 | piriyagmailcom    | 21ec1240  | 3rdyr      |
++-----------------+---------+-------------+-------------------+-----------+------------+
+7 rows in set (0.00 sec)
+
+mysql> select*from courses;
++--------------------------------+---------------+--------------+----------+
+| coursename                     | coursecode    | instructor   | credits  |
++--------------------------------+---------------+--------------+----------+
+| java                           | 32java        | niranjana    | 4credits |
+| networks                       | 31networks    | shreya       | 4credits |
+| probabilityandstasticsanalysis | 33probability | krishnakumar | 4credits |
+| databasemanagmentsystem        | 34dbms        | aarav        | 4credits |
+| principlesofsignlsandsystem    | 35signals     | ajay         | 4credits |
++--------------------------------+---------------+--------------+----------+
+5 rows in set (0.00 sec)
+
+mysql> select*from enrollment;
++-------------+--------------------------------+------+---------------+-----------+
+| studentname | coursename                     | idno | coursecode    | semester  |
++-------------+--------------------------------+------+---------------+-----------+
+| karnika     | probabilityandstasticsanalysis | 2100 | 33probability | semester6 |
+| nydika      | java                           | 2101 | java          | semester6 |
+| pavithra    | networks                       | 2102 | dbms          | semester6 |
++-------------+--------------------------------+------+---------------+-----------+
+3 rows in set (0.00 sec)
+
+mysql> select*from grades;
++---------+---------------+----------+--------+
+| idno    | courseid      | semester | grade  |
++---------+---------------+----------+--------+
+| 21ec321 | 33probability | 6thsem   | ograde |
+| 21cs371 | 32java        | 6thsem   | ograde |
+| 21ec372 | 34dbms        | 6thsem   | agrade |
++---------+---------------+----------+--------+
+3 rows in set (0.00 sec)
