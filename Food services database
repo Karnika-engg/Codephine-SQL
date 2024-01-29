@@ -1,0 +1,307 @@
+
+mysql> create database foodie;
+Query OK, 1 row affected (0.02 sec)
+
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| abc12345           |
+| datamining         |
+| foodie             |
+| karnika            |
+| mysql              |
+| nydika             |
+| performance_schema |
+| project1           |
+| student            |
+| studentdatabase    |
+| test               |
+| topper             |
++--------------------+
+13 rows in set (0.07 sec)
+
+mysql> use foodie;
+Database changed
+mysql> create table menu(itemname varchar(50),description varchar(50),price varchar(50),ingredients varchar(50));
+Query OK, 0 rows affected (0.03 sec)
+
+mysql> desc menu;
++-------------+-------------+------+-----+---------+-------+
+| Field       | Type        | Null | Key | Default | Extra |
++-------------+-------------+------+-----+---------+-------+
+| itemname    | varchar(50) | YES  |     | NULL    |       |
+| description | varchar(50) | YES  |     | NULL    |       |
+| price       | varchar(50) | YES  |     | NULL    |       |
+| ingredients | varchar(50) | YES  |     | NULL    |       |
++-------------+-------------+------+-----+---------+-------+
+4 rows in set (0.00 sec)
+
+mysql> insert into menu value(noodless,chinese,200ruppess,maida vegetables spices);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'vegetables spices)' at line 1
+mysql> insert into menu value(noodless,chinese,200ruppess,maidavegetablesspices);)
+ERROR 1054 (42S22): Unknown column 'noodless' in 'field list'
+    -> insert into menu value(spahageti,chinese,200ruppess,maidavegetablesspices);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ')
+insert into menu value(spahageti,chinese,200ruppess,maidavegetablesspices)' at line 1
+mysql> insert into menu value("spahageti","chineseoritaliancombo","200ruppess","maidavegetablesspices");
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into menu value("Pizza","Italian","140ruppess","maidasaucestoppingscheese");
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into menu value("Pasta","Italian","120ruppess","maidaorwheatsaucesspicesveges");
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into menu value("tacos","sides","110ruppess","maidatoppingsstuffing");
+Query OK, 1 row affected (0.01 sec)
+
+mysql> select* from menu;
++-----------+-----------------------+------------+-------------------------------+
+| itemname  | description           | price      | ingredients                   |
++-----------+-----------------------+------------+-------------------------------+
+| spahageti | chineseoritaliancombo | 200ruppess | maidavegetablesspices         |
+| Pizza     | Italian               | 140ruppess | maidasaucestoppingscheese     |
+| Pasta     | Italian               | 120ruppess | maidaorwheatsaucesspicesveges |
+| tacos     | sides                 | 110ruppess | maidatoppingsstuffing         |
++-----------+-----------------------+------------+-------------------------------+
+4 rows in set (0.00 sec)
+
+mysql> create  table foodinventory (itemname varchar(50),quantityonhand int(50),reorderpoint int(50));
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> desc foodinventory;
++----------------+-------------+------+-----+---------+-------+
+| Field          | Type        | Null | Key | Default | Extra |
++----------------+-------------+------+-----+---------+-------+
+| itemname       | varchar(50) | YES  |     | NULL    |       |
+| quantityonhand | int(50)     | YES  |     | NULL    |       |
+| reorderpoint   | int(50)     | YES  |     | NULL    |       |
++----------------+-------------+------+-----+---------+-------+
+3 rows in set (0.00 sec)
+
+mysql> insert into foodinventory value("spahageti",20,5);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into foodinventory value("pizza",19,3);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into foodinventory value("pasta",15,5);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into foodinventory value("tacos",5,2);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> select*from foodinventory;
++-----------+----------------+--------------+
+| itemname  | quantityonhand | reorderpoint |
++-----------+----------------+--------------+
+| spahageti |             20 |            5 |
+| pizza     |             19 |            3 |
+| pasta     |             15 |            5 |
+| tacos     |              5 |            2 |
++-----------+----------------+--------------+
+4 rows in set (0.00 sec)
+
+mysql> create table order(ordernumber int(40),customername varchar(50),orderdate varchar(50),ordereditems varchar(60));
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'order(ordernumber int(40),customername varchar(50),orderdate varchar(50),ordered' at line 1
+mysql> create table orders(ordernumber int(40),customername varchar(50),orderdate varchar(50),ordereditems varchar(60));
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> desc orders;
++--------------+-------------+------+-----+---------+-------+
+| Field        | Type        | Null | Key | Default | Extra |
++--------------+-------------+------+-----+---------+-------+
+| ordernumber  | int(40)     | YES  |     | NULL    |       |
+| customername | varchar(50) | YES  |     | NULL    |       |
+| orderdate    | varchar(50) | YES  |     | NULL    |       |
+| ordereditems | varchar(60) | YES  |     | NULL    |       |
++--------------+-------------+------+-----+---------+-------+
+4 rows in set (0.00 sec)
+
+mysql> insert into orders value(123,"karnika","29thjan2023","pizza1");
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into orders value(124,"nydika","29thjan2023","taco1");
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into orders value(125,"pavithras","29thjan2023","pizza2");
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into orders value(126,"pavithram","29thjan2023","pasta1");
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into orders value(127,"jessey","29thjan2023","pasta1");
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into orders value(128,"piriyadharshini","29thjan2023","pasta1");
+Query OK, 1 row affected (0.02 sec)
+
+mysql> insert into orders value(129,"manisha","29thjan2023","taco1");
+Query OK, 1 row affected (0.00 sec)
+
+mysql> select* from orders;
++-------------+-----------------+-------------+--------------+
+| ordernumber | customername    | orderdate   | ordereditems |
++-------------+-----------------+-------------+--------------+
+|         123 | karnika         | 29thjan2023 | pizza1       |
+|         124 | nydika          | 29thjan2023 | taco1        |
+|         125 | pavithras       | 29thjan2023 | pizza2       |
+|         126 | pavithram       | 29thjan2023 | pasta1       |
+|         127 | jessey          | 29thjan2023 | pasta1       |
+|         128 | piriyadharshini | 29thjan2023 | pasta1       |
+|         129 | manisha         | 29thjan2023 | taco1        |
++-------------+-----------------+-------------+--------------+
+7 rows in set (0.00 sec)
+
+mysql> create table customers(customername varchar(50),address varchar(50),phonenumber int(50),emailadress varchar(50));
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> desc customers;
++--------------+-------------+------+-----+---------+-------+
+| Field        | Type        | Null | Key | Default | Extra |
++--------------+-------------+------+-----+---------+-------+
+| customername | varchar(50) | YES  |     | NULL    |       |
+| address      | varchar(50) | YES  |     | NULL    |       |
+| phonenumber  | int(50)     | YES  |     | NULL    |       |
+| emailadress  | varchar(50) | YES  |     | NULL    |       |
++--------------+-------------+------+-----+---------+-------+
+4 rows in set (0.02 sec)
+
+mysql> insert into customers value("karnika","chennai",55667788,"karnikagmailcom");
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into customers value("nydika","chennai",557777999,"nydikagmailcom");
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into customers value("pavithras","chennai",55665583,"pavithrasgmailcom");
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into customers value("pavithram","chennai",55665583,"pavithramgmailcom");
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into customers value("jessey","chennai",559965583,"jesseygmailcom");
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into customers value("piriyadharshini","chennai",559965583,"piriyagmailcom");
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into customers value("manisha","chennai",599965583,"manishacutiegmailcom");
+Query OK, 1 row affected (0.01 sec)
+
+mysql> select *from customers;
++-----------------+---------+-------------+----------------------+
+| customername    | address | phonenumber | emailadress          |
++-----------------+---------+-------------+----------------------+
+| karnika         | chennai |    55667788 | karnikagmailcom      |
+| nydika          | chennai |   557777999 | nydikagmailcom       |
+| pavithras       | chennai |    55665583 | pavithrasgmailcom    |
+| pavithram       | chennai |    55665583 | pavithramgmailcom    |
+| jessey          | chennai |   559965583 | jesseygmailcom       |
+| piriyadharshini | chennai |   559965583 | piriyagmailcom       |
+| manisha         | chennai |   599965583 | manishacutiegmailcom |
++-----------------+---------+-------------+----------------------+
+7 rows in set (0.00 sec)
+
+mysql> select *from foodinventory;
++-----------+----------------+--------------+
+| itemname  | quantityonhand | reorderpoint |
++-----------+----------------+--------------+
+| spahageti |             20 |            5 |
+| pizza     |             19 |            3 |
+| pasta     |             15 |            5 |
+| tacos     |              5 |            2 |
++-----------+----------------+--------------+
+4 rows in set (0.00 sec)
+
+mysql> select *from orders;
++-------------+-----------------+-------------+--------------+
+| ordernumber | customername    | orderdate   | ordereditems |
++-------------+-----------------+-------------+--------------+
+|         123 | karnika         | 29thjan2023 | pizza1       |
+|         124 | nydika          | 29thjan2023 | taco1        |
+|         125 | pavithras       | 29thjan2023 | pizza2       |
+|         126 | pavithram       | 29thjan2023 | pasta1       |
+|         127 | jessey          | 29thjan2023 | pasta1       |
+|         128 | piriyadharshini | 29thjan2023 | pasta1       |
+|         129 | manisha         | 29thjan2023 | taco1        |
++-------------+-----------------+-------------+--------------+
+7 rows in set (0.00 sec)
+
+mysql> select *from menu;
++-----------+-----------------------+------------+-------------------------------+
+| itemname  | description           | price      | ingredients                   |
++-----------+-----------------------+------------+-------------------------------+
+| spahageti | chineseoritaliancombo | 200ruppess | maidavegetablesspices         |
+| Pizza     | Italian               | 140ruppess | maidasaucestoppingscheese     |
+| Pasta     | Italian               | 120ruppess | maidaorwheatsaucesspicesveges |
+| tacos     | sides                 | 110ruppess | maidatoppingsstuffing         |
++-----------+-----------------------+------------+-------------------------------+
+4 rows in set (0.02 sec)
+
+mysql> select *from customers;
++-----------------+---------+-------------+----------------------+
+| customername    | address | phonenumber | emailadress          |
++-----------------+---------+-------------+----------------------+
+| karnika         | chennai |    55667788 | karnikagmailcom      |
+| nydika          | chennai |   557777999 | nydikagmailcom       |
+| pavithras       | chennai |    55665583 | pavithrasgmailcom    |
+| pavithram       | chennai |    55665583 | pavithramgmailcom    |
+| jessey          | chennai |   559965583 | jesseygmailcom       |
+| piriyadharshini | chennai |   559965583 | piriyagmailcom       |
+| manisha         | chennai |   599965583 | manishacutiegmailcom |
++-----------------+---------+-------------+----------------------+
+7 rows in set (0.00 sec)
+
+mysql> select *from menu;
++-----------+-----------------------+------------+-------------------------------+
+| itemname  | description           | price      | ingredients                   |
++-----------+-----------------------+------------+-------------------------------+
+| spahageti | chineseoritaliancombo | 200ruppess | maidavegetablesspices         |
+| Pizza     | Italian               | 140ruppess | maidasaucestoppingscheese     |
+| Pasta     | Italian               | 120ruppess | maidaorwheatsaucesspicesveges |
+| tacos     | sides                 | 110ruppess | maidatoppingsstuffing         |
++-----------+-----------------------+------------+-------------------------------+
+4 rows in set (0.00 sec)
+
+mysql> select *from foodinventory;
++-----------+----------------+--------------+
+| itemname  | quantityonhand | reorderpoint |
++-----------+----------------+--------------+
+| spahageti |             20 |            5 |
+| pizza     |             19 |            3 |
+| pasta     |             15 |            5 |
+| tacos     |              5 |            2 |
++-----------+----------------+--------------+
+4 rows in set (0.00 sec)
+
+mysql> select *from orders;
++-------------+-----------------+-------------+--------------+
+| ordernumber | customername    | orderdate   | ordereditems |
++-------------+-----------------+-------------+--------------+
+|         123 | karnika         | 29thjan2023 | pizza1       |
+|         124 | nydika          | 29thjan2023 | taco1        |
+|         125 | pavithras       | 29thjan2023 | pizza2       |
+|         126 | pavithram       | 29thjan2023 | pasta1       |
+|         127 | jessey          | 29thjan2023 | pasta1       |
+|         128 | piriyadharshini | 29thjan2023 | pasta1       |
+|         129 | manisha         | 29thjan2023 | taco1        |
++-------------+-----------------+-------------+--------------+
+7 rows in set (0.00 sec)
+
+mysql> select *from customers;
++-----------------+---------+-------------+----------------------+
+| customername    | address | phonenumber | emailadress          |
++-----------------+---------+-------------+----------------------+
+| karnika         | chennai |    55667788 | karnikagmailcom      |
+| nydika          | chennai |   557777999 | nydikagmailcom       |
+| pavithras       | chennai |    55665583 | pavithrasgmailcom    |
+| pavithram       | chennai |    55665583 | pavithramgmailcom    |
+| jessey          | chennai |   559965583 | jesseygmailcom       |
+| piriyadharshini | chennai |   559965583 | piriyagmailcom       |
+| manisha         | chennai |   599965583 | manishacutiegmailcom |
++-----------------+---------+-------------+----------------------+
+7 rows in set (0.00 sec)
+
+mysql>
