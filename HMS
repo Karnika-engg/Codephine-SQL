@@ -1,0 +1,210 @@
+mysql> create database hospital;
+Query OK, 1 row affected (0.02 sec)
+
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| abc12345  
+|  hospital          |
+
+
+mysql> use hospital;
+Database changed
+mysql> create table patients(name varchar(100),address varchar(100),phonenumber int(50),dateofbirth int(50),medicalhistory varchar(1000),insuranceinfo(1000));
+mysql> create table patients(name varchar(100),address varchar(100),phonenumber int(50),dateofbirth int(50),medicalhistory varchar(1000),insuranceinfo varchar(1000));
+Query OK, 0 rows affected (0.03 sec)
+
+mysql> desc patients;
++----------------+---------------+------+-----+---------+-------+
+| Field          | Type          | Null | Key | Default | Extra |
++----------------+---------------+------+-----+---------+-------+
+| name           | varchar(100)  | YES  |     | NULL    |       |
+| address        | varchar(100)  | YES  |     | NULL    |       |
+| phonenumber    | int(50)       | YES  |     | NULL    |       |
+| dateofbirth    | int(50)       | YES  |     | NULL    |       |
+| medicalhistory | varchar(1000) | YES  |     | NULL    |       |
+| insuranceinfo  | varchar(1000) | YES  |     | NULL    |       |
++----------------+---------------+------+-----+---------+-------+
+6 rows in set (0.01 sec)
+
+mysql> insert into patients value("karnika","chennai",1234,190123,"notfound","starinsurance");
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into patients value("nydika","chennai",1244,100808,"notfound","starinsurance");
+Query OK, 1 row affected (0.00 sec)
+
+mysql> select*from patients;
++---------+---------+-------------+-------------+----------------+---------------+
+| name    | address | phonenumber | dateofbirth | medicalhistory | insuranceinfo |
++---------+---------+-------------+-------------+----------------+---------------+
+| karnika | chennai |        1234 |      190123 | notfound       | starinsurance |
+| nydika  | chennai |        1244 |      100808 | notfound       | starinsurance |
++---------+---------+-------------+-------------+----------------+---------------+
+2 rows in set (0.00 sec)
+
+mysql> create table appointment(patientid varchar(10),appointmentdataandtime varchar(100),providerid varchar(10));
+Query OK, 0 rows affected (0.02 sec)
+
+mysql> insert into appointment(123,190224,13);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '123,190224,13)' at line 1
+mysql> insert into appointment("123","190224","13");
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '"123","190224","13")' at line 1
+mysql> insert into appointment value("123","190224","13");
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into appointment value("123","190224","139");
+Query OK, 1 row affected (0.00 sec)
+
+mysql> select*from patients;
++---------+---------+-------------+-------------+----------------+---------------+
+| name    | address | phonenumber | dateofbirth | medicalhistory | insuranceinfo |
++---------+---------+-------------+-------------+----------------+---------------+
+| karnika | chennai |        1234 |      190123 | notfound       | starinsurance |
+| nydika  | chennai |        1244 |      100808 | notfound       | starinsurance |
++---------+---------+-------------+-------------+----------------+---------------+
+2 rows in set (0.00 sec)
+
+mysql> select*from appointment;
++-----------+------------------------+------------+
+| patientid | appointmentdataandtime | providerid |
++-----------+------------------------+------------+
+| 123       | 190224                 | 13         |
+| 123       | 190224                 | 139        |
++-----------+------------------------+------------+
+2 rows in set (0.00 sec)
+
+mysql> create table providers(name varchar(50),specality varchar(50),contactinformation varchar(50));
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> insert into providers value("karnika","skin","karnika.com");
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into providers value("nydika","dentist","nydika.com");
+Query OK, 1 row affected (0.00 sec)
+
+mysql> select* from providers;
++---------+-----------+--------------------+
+| name    | specality | contactinformation |
++---------+-----------+--------------------+
+| karnika | skin      | karnika.com        |
+| nydika  | dentist   | nydika.com         |
++---------+-----------+--------------------+
+2 rows in set (0.00 sec)
+
+mysql> create table procedures(procedurename varchar(50),description varchar(50),billingcode varchar(50));
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> insert into procedures value("general","allergy",123);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into procedures value("general","generalcleaning",124);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> select* from procedures;
++---------------+-----------------+-------------+
+| procedurename | description     | billingcode |
++---------------+-----------------+-------------+
+| general       | allergy         | 123         |
+| general       | generalcleaning | 124         |
++---------------+-----------------+-------------+
+2 rows in set (0.00 sec)
+
+mysql> create table medications(medicationname varchar(50),dosageform varchar(50),strength varchar(50));
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> insert into mediactions value("calomine","cream","2times");
+ERROR 1146 (42S02): Table 'hospital.mediactions' doesn't exist
+mysql> insert into medications value("calomine","cream","2times");
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into medications value("dolo","tablet","2times");
+Query OK, 1 row affected (0.01 sec)
+
+mysql> select* from medications;
++----------------+------------+----------+
+| medicationname | dosageform | strength |
++----------------+------------+----------+
+| calomine       | cream      | 2times   |
+| dolo           | tablet     | 2times   |
++----------------+------------+----------+
+2 rows in set (0.00 sec)
+
+mysql> create table billing value(patientid varchar(10),procedurecode varchar(10),dateofservice varchar(10),amountbilledvarchar(10));
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'value(patientid varchar(10),procedurecode varchar(10),dateofservice varchar(10),' at line 1
+mysql> create table billing value(patientid varchar(10),procedurecode varchar(10),dateofservice varchar(10),amountbilled varchar(10));
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'value(patientid varchar(10),procedurecode varchar(10),dateofservice varchar(10),' at line 1
+mysql> create table billing (patientid varchar(10),procedurecode varchar(10),dateofservice varchar(10),amountbilled varchar(10));
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> insert into billing value("123","1245","120224","2000");
+Query OK, 1 row affected (0.02 sec)
+
+mysql> insert into billing value("153","1243","120294","1500");
+Query OK, 1 row affected (0.00 sec)
+
+mysql> select* from billing;
++-----------+---------------+---------------+--------------+
+| patientid | procedurecode | dateofservice | amountbilled |
++-----------+---------------+---------------+--------------+
+| 123       | 1245          | 120224        | 2000         |
+| 153       | 1243          | 120294        | 1500         |
++-----------+---------------+---------------+--------------+
+2 rows in set (0.00 sec)
+
+mysql> select* from pateints;
+ERROR 1146 (42S02): Table 'hospital.pateints' doesn't exist
+mysql> select* from patients;
++---------+---------+-------------+-------------+----------------+---------------+
+| name    | address | phonenumber | dateofbirth | medicalhistory | insuranceinfo |
++---------+---------+-------------+-------------+----------------+---------------+
+| karnika | chennai |        1234 |      190123 | notfound       | starinsurance |
+| nydika  | chennai |        1244 |      100808 | notfound       | starinsurance |
++---------+---------+-------------+-------------+----------------+---------------+
+2 rows in set (0.00 sec)
+
+mysql> select* from appointment;
++-----------+------------------------+------------+
+| patientid | appointmentdataandtime | providerid |
++-----------+------------------------+------------+
+| 123       | 190224                 | 13         |
+| 123       | 190224                 | 139        |
++-----------+------------------------+------------+
+2 rows in set (0.00 sec)
+
+mysql> select* from providers;
++---------+-----------+--------------------+
+| name    | specality | contactinformation |
++---------+-----------+--------------------+
+| karnika | skin      | karnika.com        |
+| nydika  | dentist   | nydika.com         |
++---------+-----------+--------------------+
+2 rows in set (0.00 sec)
+
+mysql> select* from procedures;
++---------------+-----------------+-------------+
+| procedurename | description     | billingcode |
++---------------+-----------------+-------------+
+| general       | allergy         | 123         |
+| general       | generalcleaning | 124         |
++---------------+-----------------+-------------+
+2 rows in set (0.00 sec)
+
+mysql> select* from medications;
++----------------+------------+----------+
+| medicationname | dosageform | strength |
++----------------+------------+----------+
+| calomine       | cream      | 2times   |
+| dolo           | tablet     | 2times   |
++----------------+------------+----------+
+2 rows in set (0.00 sec)
+
+mysql> select* from billing;
++-----------+---------------+---------------+--------------+
+| patientid | procedurecode | dateofservice | amountbilled |
++-----------+---------------+---------------+--------------+
+| 123       | 1245          | 120224        | 2000         |
+| 153       | 1243          | 120294        | 1500         |
++-----------+---------------+---------------+--------------+
+2 rows in set (0.00 sec)
